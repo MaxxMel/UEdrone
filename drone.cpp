@@ -99,13 +99,12 @@ void Adrone::BeginPlay()
         AHUD* HUD = PlayerController->GetHUD();
         if (HUD)
         {
-            // Приводим HUD к вашему типу AdroneHUD
+           
             AdroneHUD* MyDroneHUD = Cast<AdroneHUD>(HUD);
             if (MyDroneHUD)
             {
-                // Вызываем метод BeginPlay у HUD или выполняем другие действия
-                MyDroneHUD->BeginPlay();  // Это может быть не нужно, если HUD сам управляет своим BeginPlay
-                // Либо добавляем виджет на экран напрямую, если это нужно:
+                
+                MyDroneHUD->BeginPlay();  
                 if (MyDroneHUD->MainHUD)
                 {
                     UUserWidget* droneWidget = CreateWidget<UUserWidget>(GetWorld(), MyDroneHUD->MainHUD);
