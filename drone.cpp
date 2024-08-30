@@ -95,16 +95,17 @@ void Adrone::BeginPlay()
     APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
     if (PlayerController)
     {
-        // Получаем ссылку на HUD
+        
         AHUD* HUD = PlayerController->GetHUD();
         if (HUD)
         {
-           
+            
             AdroneHUD* MyDroneHUD = Cast<AdroneHUD>(HUD);
             if (MyDroneHUD)
             {
-                
+               
                 MyDroneHUD->BeginPlay();  
+               
                 if (MyDroneHUD->MainHUD)
                 {
                     UUserWidget* droneWidget = CreateWidget<UUserWidget>(GetWorld(), MyDroneHUD->MainHUD);
@@ -137,6 +138,13 @@ void Adrone::Tick(float DeltaTime)
     FVector ActorLocation = GetActorLocation();
     float A = ActorLocation.Z;
     A58 = A - 58, 8;
+     if (A58 <= 4)
+ {
+     LeftFrontThrust += 0.005f * (4- A58);  
+     LeftBackThrust += 0.005f * (4 - A58);    
+     RightFrontThrust += 0.005f * (4 - A58);
+     RightBackThrust += 0.005f * (4 - A58);
+ }
     if (GEngine)
     {
         FString AStr = FString::Printf(TEXT("Altitude: %.2f"), A58);
